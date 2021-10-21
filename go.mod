@@ -1,0 +1,1 @@
+module "github.com/fixJ/yunpian-go-sdk"
