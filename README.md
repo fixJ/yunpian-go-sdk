@@ -167,7 +167,7 @@ r, err := c.Sms.V2SingleSend(p)
 if err != nil {
     fmt.Println(err)
 } else {
-fmt.Println(r.V2SingleSendResult)
+    fmt.Println(r.V2SingleSendResult)
 }
 
 ```
