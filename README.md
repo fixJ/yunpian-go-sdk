@@ -174,4 +174,4 @@ if err != nil {
 
 ## Example
 
-所有接口均提供示例，请参考 https://github.com/fixJ/yunpian-go-sdk/example
+所有接口均提供示例，请参考 https://github.com/fixJ/yunpian-go-sdk/tree/master/example
