@@ -52,6 +52,20 @@ func Format(data string, r *Result, resType string) error {
 		err = json.Unmarshal([]byte(data), &((*r).V2ShortUrlCreateResult))
 	} else if resType == "V2ShortUrlStatsResult" {
 		err = json.Unmarshal([]byte(data), &((*r).V2ShortUrlStatsResult))
+	} else if resType == "V2VsmsTplBatchSendResult" {
+		err = json.Unmarshal([]byte(data), &((*r).V2VsmsTplBatchSendResult))
+	} else if resType == "V2VsmsSignAddResult" {
+		err = json.Unmarshal([]byte(data), &((*r).V2VsmsSignAddResult))
+	} else if resType == "V2VsmsSignSearchResult" {
+		err = json.Unmarshal([]byte(data), &((*r).V2VsmsSignSearchResult))
+	} else if resType == "V2VsmsSignDeleteResult" {
+		err = json.Unmarshal([]byte(data), &((*r).V2VsmsSignDeleteResult))
+	} else if resType == "V2VsmsTplAddResult" {
+		err = json.Unmarshal([]byte(data), &((*r).V2VsmsTplAddResult))
+	} else if resType == "V2VsmsTplGetResult" {
+		err = json.Unmarshal([]byte(data), &((*r).V2VsmsTplGetResult))
+	} else if resType == "V2VsmsTplDeleteResult" {
+		err = json.Unmarshal([]byte(data), &((*r).V2VsmsTplDeleteResult))
 	}
 	return err
 }
@@ -81,6 +95,13 @@ type Result struct {
 	V2UserSetResult
 	V2ShortUrlCreateResult
 	V2ShortUrlStatsResult
+	V2VsmsTplBatchSendResult
+	V2VsmsSignAddResult
+	V2VsmsSignSearchResult
+	V2VsmsSignDeleteResult
+	V2VsmsTplAddResult
+	V2VsmsTplGetResult
+	V2VsmsTplDeleteResult
 }
 
 type FailResult struct {
@@ -308,4 +329,104 @@ type V2ShortUrlStatsResult struct {
 	Records  []V2ShortUrlRecord `json:"records"`
 	Size     int                `json:"size"`
 	TimeStep string             `json:"time_step"`
+}
+
+type V2VsmsSend struct {
+	Msg    string  `json:"msg"`
+	Code   int     `json:"code"`
+	Fee    float64 `json:"fee"`
+	Mobile string  `json:"mobile"`
+	Sid    int     `json:"sid"`
+}
+
+type V2VsmsTplBatchSendResult struct {
+	TotalCount int          `json:"total_count"`
+	TotalFee   string       `json:"total_fee"`
+	Code       int          `json:"code"`
+	Msg        string       `json:"msg"`
+	Count      int          `json:"count"`
+	Fee        float32      `json:"fee"`
+	Unit       string       `json:"unit"`
+	Mobile     string       `json:"mobile"`
+	Sid        int64        `json:"sid"`
+	Data       []V2VsmsSend `json:"data"`
+}
+
+type V2VsmsSignAddData struct {
+	Sign string `json:"sign"`
+}
+
+type V2VsmsSignAddResult struct {
+	Code   int    `json:"code"`
+	Msg    string `json:"msg"`
+	Detail string `json:"detail"`
+	Data   string `json:"data"`
+}
+
+type V2VsmsSignSearchListEle struct {
+	Sign   string `json:"sign"`
+	Status int    `json:"status"`
+	Remark string `json:"remark"`
+}
+
+type V2VsmsSignSearchData struct {
+	SignList []V2VsmsSignSearchListEle `json:"sign_list"`
+	Total    int                       `json:"total"`
+}
+
+type V2VsmsSignSearchResult struct {
+	HttpStatusCode int    `json:"http_status_code"`
+	Code           int    `json:"code"`
+	Msg            string `json:"msg"`
+	Detail         string `json:"detail"`
+	Data           string `json:"data"`
+}
+
+type V2VsmsSignDeleteResult struct {
+	Code   int    `json:"code"`
+	Msg    string `json:"msg"`
+	Detail string `json:"detail"`
+	Data   string `json:"data"`
+}
+
+type V2VsmsTplAddData struct {
+	TplId int `json:"tpl_id"`
+}
+
+type V2VsmsTplAddResult struct {
+	Code   int              `json:"code"`
+	Msg    string           `json:"msg"`
+	Detail string           `json:"detail"`
+	Data   V2VsmsTplAddData `json:"data"`
+}
+
+type V2VsmsTplGetData struct {
+	TplId         int    `json:"tpl_id"`
+	CheckStatus   string `json:"check_status"`
+	Reason        string `json:"reason"`
+	YdEnabled     bool   `json:"yd_enabled"`
+	LtEnabled     bool   `json:"lt_enabled"`
+	DxEnables     bool   `json:"dx_enables"`
+	YdCheckStatus int    `json:"yd_check_status"`
+	LtCheckStatus int    `json:"lt_check_status"`
+	DxCheckStatus int    `json:"dx_check_status"`
+	YdCheckRemark string `json:"yd_check_remark"`
+	LtCheckRemark string `json:"lt_check_remark"`
+	DxCheckRemark string `json:"dx_check_remark"`
+	ExpireTime    string `json:"expire_time"`
+}
+
+type V2VsmsTplGetResult struct {
+	Code           int              `json:"code"`
+	Msg            string           `json:"msg"`
+	Detail         string           `json:"detail"`
+	HttpStatusCode int              `json:"http_status_code"`
+	Data           V2VsmsTplGetData `json:"data"`
+}
+
+type V2VsmsTplDeleteResult struct {
+	Code   int    `json:"code"`
+	Msg    string `json:"msg"`
+	Detail string `json:"detail"`
+	Data   string `json:"data"`
 }

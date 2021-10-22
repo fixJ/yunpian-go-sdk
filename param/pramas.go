@@ -156,3 +156,61 @@ type V2ShortUrlStatsParam struct {
 	StartTime string `param:"start_time"`
 	EndTime   string `param:"end_time"`
 }
+
+type V2VsmsTplBatchSendParam struct {
+	TplId        string `param:"tpl_id"`
+	Mobile       string `param:"mobile"`
+	Uid          string `param:"uid"`
+	TplParamJson string `param:"tpl_param_json"`
+	callbackUrl  string `param:"callback_url"`
+}
+
+type V2VsmsSignAddParam struct {
+	Sign                    string `param:"sign"`
+	CertificateFileSuffix   string `param:"certificate_file_suffix"`
+	CertificateFileContents string `param:"certificate_file_contents"`
+	LicenseFileSuffix       string `param:"license_file_suffix"`
+	LicenseFileContents     string `param:"license_file_contents"`
+}
+
+type V2VsmsSignSearchParam struct {
+	Sign     string `param:"sign"`
+	PageNum  string `param:"page_num"`
+	PageSize string `param:"page_size"`
+}
+
+type V2VsmsSignDeleteParam struct {
+	Sign string `param:"sign"`
+}
+
+type V2VsmsAttachment struct {
+	Index    int    `json:"index"`
+	FileName string `json:"fileName"`
+}
+
+type V2VsmsFrames struct {
+	Index       int                `json:"index"`
+	PlayTimes   int                `json:"playTimes"`
+	Attachments []V2VsmsAttachment `json:"attachments"`
+}
+
+type V2VsmsLayout struct {
+	VlVersion string         `json:"vlVersion"`
+	Subject   string         `json:"subject"`
+	Frames    []V2VsmsFrames `json:"frames"`
+}
+
+type V2VsmsTplAddParam struct {
+	Sign          string `param:"sign"`
+	Layout        string `param:"layout"`
+	CallbackUrl   string `param:"callback_url"`
+	MobileStatSid string `param:"mobileStatSid"`
+}
+
+type V2VsmsTplGetParam struct {
+	TplId string `param:"tpl_id"`
+}
+
+type V2VsmsTplDeleteParam struct {
+	TplId string `param:"tpl_id"`
+}
