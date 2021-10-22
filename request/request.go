@@ -28,7 +28,6 @@ func HttpPostForm(apiUrl string, param param.RequestParam, resType string, apike
 			data.Set(paramFormName, refV.Field(i).String())
 		}
 	}
-	fmt.Println(data)
 	resp, err := http.PostForm(apiUrl, data)
 	if err != nil {
 		return apiResult, err
@@ -43,7 +42,6 @@ func HttpPostForm(apiUrl string, param param.RequestParam, resType string, apike
 	if err != nil {
 		return apiResult, err
 	}
-	fmt.Println(string(body))
 	err = result.Format(string(body), &apiResult, resType)
 	if err != nil {
 		return apiResult, err
@@ -78,7 +76,6 @@ func HttpGet(apiUrl string, param param.RequestParam, resType string, apikey str
 	if err != nil {
 		return apiResult, err
 	}
-	fmt.Println(string(body), apiUrl + "?" + data)
 	err = result.Format(string(body), &apiResult, resType)
 	if err != nil {
 		return apiResult, err
@@ -134,7 +131,6 @@ func HttpPostMultiPartForm(apiUrl string, param param.RequestParam, resType stri
 	if err != nil {
 		return apiResult, err
 	}
-	fmt.Println(string(respBody))
 	err = result.Format(string(respBody), &apiResult, resType)
 	if err != nil {
 		return apiResult, err
