@@ -1,6 +1,7 @@
 # yunpian-go-sdk
 
-使用Golang封装的云片短信平台SDK`</br>`
+使用Golang封装的云片短信平台SDK
+
 官方文档：https://www.yunpian.com/dev-doc
 
 # 接口支持
