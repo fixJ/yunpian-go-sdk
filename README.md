@@ -100,7 +100,7 @@ c2 := client.InitCustomClient("your apikey", "https://sms.yunpian.com")
 暴露出来给用户设置的好处：
 
 1. 用户环境无法支持https
-2. 用户可已根据网络环境使用云片国内的域名sms.yunpian.com或者国外的域名us.yunpian.com
+2. 用户可以根据网络环境使用云片国内的域名sms.yunpian.com或者国外的域名us.yunpian.com
 
 ## 构造请求参数对象
 
