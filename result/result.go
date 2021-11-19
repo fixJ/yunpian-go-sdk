@@ -126,6 +126,7 @@ type V2BatchSendResult struct {
 	TotalFee   string               `json:"total_fee"`
 	Unit       string               `json:"unit"`
 	Data       []V2SingleSendResult `json:"data"`
+	Mobile     string               `json:"mobile"`
 }
 
 type V2TplSingleSendResult struct {
@@ -152,6 +153,7 @@ type V2Status struct {
 	UserReceiveTime string `json:"user_receive_time"`
 	ErrorMsg        string `json:"error_msg"`
 	ReportStatus    string `json:"report_status"`
+	Mobile          string `json:"mobile"`
 }
 type V2PullStatusResult []V2Status
 
