@@ -1,51 +1,52 @@
 # yunpian-go-sdk
 
-使用Golang封装的云片短信平台SDK
+Yunpian SMS platform SDK by Golang
 
-官方文档：https://www.yunpian.com/dev-doc
+Official API Document：https://www.yunpian.com/dev-doc
 
-# 接口支持
+[SDK 中文文档](https://github.com/fixJ/yunpian-go-sdk/blob/master/README.zh-CN.md)
 
+# API Support
 
 | 接口名称               | 接口地址                             |
 | ------------------------ | -------------------------------------- |
-| 单条发送               | /v2/sms/single_send.json             |
-| 批量发送相同内容       | /v2/sms/batch_send.json              |
-| 指定模板单发           | /v2/sms/tpl_single_send.json         |
-| 指定模板群发           | /v2/sms/tpl_batch_send.json          |
-| 获取状态报告           | /v2/sms/pull_status.json             |
-| 获取回复短信           | /v2/sms/pull_reply.json              |
-| 添加模板               | /v2/tpl/add.json                     |
-| 获取模板               | /v2/tpl/get.json                     |
-| 修改模板               | /v2/tpl/update.json                  |
-| 删除模板               | /v2/tpl/del.json                     |
-| 添加签名               | /v2/sign/add.json                    |
-| 获取签名               | /v2/sign/get.json                    |
-| 修改签名               | /v2/sign/update.json                 |
-| 查短信发送记录         | /v2/sms/get_record.json              |
-| 注册成功回调           | /v2/sms/reg_complete.json            |
-| 日账单导出             | /v2/sms/get_total_fee.json           |
-| 语音验证码发送         | /v2/voice/send.json                  |
-| 语音验证码状态报告获取 | /v2/voice/pull_status.json           |
-| 批量发送超级短信       | /v2/vsms/tpl_batch_send.json         |
-| 添加视频短信签名       | /v2/vsms/add_sign.json               |
-| 查询视频短信签名       | /v2/vsms/search_sign.json            |
-| 删除视频短信签名       | /v2/vsms/delete_sign.json            |
-| 添加超级短信模板       | /v2/vsms/add_tpl.json                |
-| 查询超级短信模板       | /v2/vsms/get_tpl.json                |
-| 删除视频短信模板       | /v2/vsms/delete_tpl.json             |
-| 查账户信息             | /v2/user/get.json                    |
-| 修改账号信息           | /v2/user/set.json                    |
-| 创建短链接             | /v2/short_url/shorten.json           |
-| 短链访问统计查询       | /v2/short_url/time_series_stats.json |
+| single send               | /v2/sms/single_send.json             |
+| batch send       | /v2/sms/batch_send.json              |
+| template single send           | /v2/sms/tpl_single_send.json         |
+| template batch send           | /v2/sms/tpl_batch_send.json          |
+| pull report           | /v2/sms/pull_status.json             |
+| pull reply           | /v2/sms/pull_reply.json              |
+| add template               | /v2/tpl/add.json                     |
+| get template               | /v2/tpl/get.json                     |
+| update template               | /v2/tpl/update.json                  |
+| delete template               | /v2/tpl/del.json                     |
+| add sign               | /v2/sign/add.json                    |
+| get sign               | /v2/sign/get.json                    |
+| update sign               | /v2/sign/update.json                 |
+| get sms record         | /v2/sms/get_record.json              |
+| register callback           | /v2/sms/reg_complete.json            |
+| export total fee             | /v2/sms/get_total_fee.json           |
+| voice sms send         | /v2/voice/send.json                  |
+| pull voice sms report | /v2/voice/pull_status.json           |
+| template batch send video sms       | /v2/vsms/tpl_batch_send.json         |
+| add video sign       | /v2/vsms/add_sign.json               |
+| get video sign       | /v2/vsms/search_sign.json            |
+| delete video sign       | /v2/vsms/delete_sign.json            |
+| add video template       | /v2/vsms/add_tpl.json                |
+| get video template       | /v2/vsms/get_tpl.json                |
+| delete video template       | /v2/vsms/delete_tpl.json             |
+| get account info             | /v2/user/get.json                    |
+| update account info           | /v2/user/set.json                    |
+| create short link             | /v2/short_url/shorten.json           |
+| get short link click info       | /v2/short_url/time_series_stats.json |
 
-# 获取SDK
+# Get SDK
 
 `go get github.com/fixJ/yunpian-go-sdk`
 
-# 快速接入
+# Quick Start
 
-下面这个例子可以实现短信单发功能
+The following is an example of a single SMS message
 
 ```go
 package main
@@ -57,121 +58,137 @@ import (
 )
 
 func main() {
-    p := param.V2SingleSendParam{Mobile: "", Text: ""}
-    c := client.InitDefaultClient("your apikey")
-    r, _ := c.Sms.V2SingleSend(p)
-    fmt.Println(r)
+	p := param.V2SingleSendParam{Mobile: "", Text: ""}
+	c := client.InitDefaultClient("your apikey")
+	r, _ := c.Sms.V2SingleSend(p)
+	fmt.Println(r)
 }
 ```
 
-# SDK接入流程
+# SDK Use steps
 
-1. 获取SDK
-2. 初始化client
-3. 构造请求参数对象
-4. 通过client调用对应的方法
-5. 获取返回值
+1. Get SDK
+2. Init a client
+3. Build request param object
+4. Use client call the function
+5. Get the response
 
-## 获取SDK
+## Get SDK
 
-使用go get github.com/fixJ/yunpian-go-sdk下载SDK
+go get github.com/fixJ/yunpian-go-sdk download SDK
 
-## 初始化client
+## Init client
 
-调用client package下的InitDefaultClient/InitCustomClient来初始化client
+call client package下的InitDefaultClient/InitCustomClient to init a client
 
-需要传入apikey；InitCustomClient还需额外传入domain，这个参数会作为内部接口请求的域名
+need incoming an apikey；InitCustomClient need incoming a domain，the domain will be used as the api prefix
 
 example:
 
 ```go
-// 默认的初始化方法
+// default init function
 c1 := client.InitDefaultClient("your apikey")
 
-// 手动传入域名方法
+// incoming the domain by manual
 c2 := client.InitCustomClient("your apikey", "https://sms.yunpian.com")
 
 ```
 
-### domain说明
+### Domain 
 
-默认的InitDefaultClient初始化的client使用的域名是https://sms.yunpian.com
+The default InitDefaultClient Initializes the client using the domain name https://sms.yunpian.com
 
-暴露出来给用户设置的好处：
 
-1. 用户环境无法支持https
-2. 用户可以根据网络环境使用云片国内的域名sms.yunpian.com或者国外的域名us.yunpian.com
 
-## 构造请求参数对象
+The benefits of exposing Settings to users:
 
-每个接口的请求参数类型都放在param package下
 
-根据你要使用的接口，创建对应的param
+
+1. The user environment does not support HTTPS
+
+2. Users can use the domestic domain name sms.yunpian.com or the foreign domain name us.yunpian.com according to the network environment
+
+## Build request param object
+
+The request parameter types for each api are placed under the Param Package
+
+
+
+Create a param based on the api you want to use
 
 example:
 
 ```go
-// 创建了一个用于V2单发接口的param
+// A param was created for the V2 single send api
+
 
 p := param.V2SingleSendParam{Mobile: "", Text: ""}
 ```
 
-## 通过client调用对应的方法
+## Use client call the function
 
-所有接口方法已经分类放在对应的package下，这些方法都挂载一个对应的type struct上
+All interface methods have been categorized under the corresponding package, and these methods are mounted on a corresponding Type struct
 
-
-| package  | 功能         |
+| package  | function         |
 | ---------- | -------------- |
-| sms      | 短信发送功能 |
-| sign     | 签名功能     |
-| tpl      | 模版功能     |
-| user     | 用户功能     |
-| voice    | 语音功能     |
-| vsms     | 视频短信功能 |
-| shortUrl | 短链接功能   |
+| sms      | send message |
+| sign     | message's sign     |
+| tpl      | message's template     |
+| user     | platform user     |
+| voice    | voice message     |
+| vsms     | video message |
+| shortUrl | short link   |
 
-YunPianClient结构体中挂载了所有的接口方法的type struct，所以通过client可以访问到接口对应的方法
-
+YunPianClient struct has mounted all the type struct of the interface method, so the corresponding method of the interface can be accessed through client
 example:
 
 ```go
-// 调用client下Sms struct中的V2SingleSend方法，即短信单发接口
-// 传入的是V2SingleSend对应的参数
+// Call V2SingleSend in the Sms struct of client
+
+// V2SingleSend is passed in as a parameter
 
 c := client.InitDefaultClient("your apikey")
 p := param.V2SingleSendParam{Mobile: "", Text: ""}
 r, err := c.Sms.V2SingleSend(p)
 ```
 
-## 获取返回值
+## Get response
 
-每个接口方法的返回值类型放在result package中
+The return value type for each interface method is placed in the Result Package
 
-Result结构体中Status字段表示了此次请求接口是否成功，成功为0，失败为-1，判断标准是接口返回的http状态码是否为200
 
-接口请求失败后的返回值统一封装在Result的FailResult中
 
-其余的字段是所有接口正常返回的结构体类型，虽然Result中封装了所有接口正常返回的结构体类型，但只有调用的接口方法所对应的类型会被赋值
+The Status field in the Result structure indicates whether the request is successful. The value of success is 0, and the value of failure is -1. The criterion is whether the HTTP Status code returned by the interface is 200
 
-调用过程中所有的内部错误都由err返回
+
+
+The returned value after an interface request fails is encapsulated in FailResult of Result
+
+
+
+The remaining fields are the normal struct types returned by all interfaces. Although Result encapsulates the normal struct types returned by all interfaces, only the type of the interface method called is assigned
+
+
+
+All internal errors during the call are returned by err
 
 example:
 
 ```go
-//调用V2SingleSend方法，并通过Result中的V2SingleSendResult获取其返回值
+//Call the V2SingleSend method and get its return value from the V2SingleSendResult in Result
+
 
 c := client.InitDefaultClient("your apikey")
 p := param.V2SingleSendParam{Mobile: "", Text: ""}
 r, err := c.Sms.V2SingleSend(p)
 if err != nil {
-    fmt.Println(err)
+fmt.Println(err)
 } else {
-    fmt.Println(r.V2SingleSendResult)
+fmt.Println(r.V2SingleSendResult)
 }
 
 ```
 
 ## Example
 
-所有接口均提供示例，请参考 https://github.com/fixJ/yunpian-go-sdk/tree/master/example
+All API are provided with examples for your reference https://github.com/fixJ/yunpian-go-sdk/tree/master/example
